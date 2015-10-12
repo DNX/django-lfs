@@ -263,7 +263,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50, verbose_name='Name', blank=True)),
                 ('position', models.IntegerField(default=1000, verbose_name='Position')),
-                ('uid', models.CharField(default=lfs.catalog.models.get_unique_id_str, unique=True, max_length=50, editable=False)),
                 ('products', models.ManyToManyField(related_name='property_groups', verbose_name='Products', to='catalog.Product')),
             ],
             options={
@@ -316,11 +315,6 @@ class Migration(migrations.Migration):
             model_name='productpropertyvalue',
             name='property',
             field=models.ForeignKey(related_name='property_values', verbose_name='Property', to='catalog.Property'),
-        ),
-        migrations.AddField(
-            model_name='productpropertyvalue',
-            name='property_group',
-            field=models.ForeignKey(related_name='property_values', verbose_name='Property group', blank=True, to='catalog.PropertyGroup', null=True),
         ),
         migrations.AddField(
             model_name='product',
